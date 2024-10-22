@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+<<<<<<< HEAD
+use Illuminate\Http\JsonResponse;
+=======
+>>>>>>> a7043f99f93028c712bab7f35327cf80c83cd855
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +22,16 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+<<<<<<< HEAD
+            'password' => ['required', Rules\Password::defaults()],
+=======
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+>>>>>>> a7043f99f93028c712bab7f35327cf80c83cd855
         ]);
 
         $user = User::create([
@@ -34,8 +42,23 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        $token = $user->createToken('auth_token')->plainTextToken;
+<<<<<<< HEAD
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'user' => $user
+        ]);
 
-        return response()->noContent();
+        }
+=======
+        
+        return response()->json([
+                    'access_token' => $token,
+                    'token_type' => 'Bearer',
+                    'user' => $user
+        ]);
+
     }
+>>>>>>> a7043f99f93028c712bab7f35327cf80c83cd855
 }
