@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Copy;
 use Illuminate\Http\Request;
 
 class CopyController extends Controller
@@ -44,5 +45,13 @@ class CopyController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    public function copyLendings($copy_id)
+    {
+        return Copy::with('lendings')
+        ->where("copy_id", "=", $copy_id)
+        ->get();
     }
 }

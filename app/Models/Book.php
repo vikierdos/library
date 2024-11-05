@@ -14,4 +14,8 @@ class Book extends Model
         'author',
         'title'
     ];
+
+    public function copies() {
+        return $this->belongsTo(Copy::class, 'book_id', 'book_id');
+    }
 }

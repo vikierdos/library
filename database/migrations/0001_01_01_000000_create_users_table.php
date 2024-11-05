@@ -26,7 +26,6 @@ return new class extends Migration
         });
 
         User::create([
-<<<<<<< HEAD
             'name'=>'admin'
             ,'email'=> 'admin@admin.hu'
             ,'password' => Hash::make('admin12345')
@@ -37,21 +36,6 @@ return new class extends Migration
             ,'email'=> 'user@user.hu'
             ,'password' => Hash::make('user12345')
         ]);
-=======
-            'name'=>'admin', 
-            'email'=> 'admin@admin.hu',
-            'password' => Hash::make('admin12345'),
-            'role' => 0
-        ]);
-
-        User::create([
-            'name'=>'user', 
-            'email'=> 'user@user.hu',
-            'password' => Hash::make('user12345')
-        ]);
-        
-        
->>>>>>> a7043f99f93028c712bab7f35327cf80c83cd855
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

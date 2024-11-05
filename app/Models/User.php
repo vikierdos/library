@@ -48,12 +48,12 @@ class User extends Authenticatable
     }
 
     public function isAdmin()  {
-<<<<<<< HEAD
             return $this->role === 0;
         }
-=======
-        return $this->role === 0;
+
+    public function lendings() {
+        return $this->hasMany(Lending::class, 'user_id', 'id');
     }
->>>>>>> a7043f99f93028c712bab7f35327cf80c83cd855
 
 }
+
